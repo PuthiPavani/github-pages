@@ -1,0 +1,25 @@
+<div style="text-align:center; margin-top:60px;"><img src="C:\Users\HP\Downloads\logo.webp"width="20%"></div>
+<div style="text-align:center; margin-top:60px;"> 
+<a style="padding-right: 20px;font-size:40px;" href="home.html">Home</a>
+<a style="padding-right: 20px;font-size:40px;" href="about us.html">About us</a>
+<a style="padding-right: 20px;font-size:40px;"href="our rythms.html">Our Rythms</a>
+</div>
+<h1 style="font-size:50px;text-align:center;"> WELCOME TO SHAILU DANCE STUDIO</h1>
+<p style=" font-size:30px;text-align:center;line-height: 40px; margin-bottom: 40px;">"Move, Groove, and Transform – Dance with Us!"<br>
+"Unleash Your Passion, One Step at a Time!"<br>"Where Every Beat Becomes a Masterpiece!"<br>
+</p>
+<div style="text-align:center;"><a style="font-size:20px;background-color:yellow; padding:15px 35px 15px 35px; "href="https://www.google.com/">Read more</a></div><br>
+<hr style="width: 60%;">
+<h1 style="text-align:center;"> OUR CORE RYTHMS </h1>
+
+<img src="C:\Users\HP\Pictures\Saved Pictures\web pic1.jpg" width="33%,calss="same size">
+<img src="C:\Users\HP\Pictures\Saved Pictures\web pic2.jpg" width="33%,class="same size">
+<img src="C:\Users\HP\Pictures\Saved Pictures\web pic3.jpg"width="33%,class="same size" >
+<h1 style="font-size:50px;text-align:center;width="20%"> OUR LOVE TOWARDS DANCE </h1>
+
+<div style="text-align:center;">
+<video controls width="500" height="500">
+    <source src="C:\Users\HP\Desktop\web video.mp4" type="video/mp4">a
+    Your browser does not support the video tag.
+</video>
+</div>
