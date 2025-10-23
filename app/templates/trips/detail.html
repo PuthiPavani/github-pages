@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+  <article class="trip-detail">
+    <header>
+      <h1>{{ trip.title }}</h1>
+      <div class="trip-card__meta">
+        <span>{{ trip.created_at.strftime('%Y-%m-%d') }}</span>
+        {% if trip.latitude and trip.longitude %}<span>📍 {{ '%.4f'|format(trip.latitude) }}, {{ '%.4f'|format(trip.longitude) }}</span>{% endif %}
+      </div>
+    </header>
+    <p class="trip-story">{{ trip.story | e | replace('\n', '<br/>') | safe }}</p>
+
+    {% if photos %}
+    <section class="gallery">
+      {% for p in photos %}
+        <figure>
+          <img src="{{ url_for('uploads', path='/' ~ p.filename) }}" alt="Photo"/>
+        </figure>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if trip.latitude and trip.longitude %}
+    <section class="map-section">
+      <div id="map" style="height:300px;border-radius:8px;"></div>
+    </section>
+    <script>
+      const map = L.map('map').setView([{{ trip.latitude }}, {{ trip.longitude }}], 8);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+      L.marker([{{ trip.latitude }}, {{ trip.longitude }}]).addTo(map);
+    </script>
+    {% endif %}
+  </article>
+{% endblock %}

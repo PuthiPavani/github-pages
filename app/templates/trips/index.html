@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Trips</h1>
+  <div class="trip-grid">
+    {% for t in trips %}
+      <a class="trip-card" href="/trips/{{ t.slug }}">
+        <div class="trip-card__title">{{ t.title }}</div>
+        <div class="trip-card__meta">
+          <span>{{ t.created_at.strftime('%Y-%m-%d') }}</span>
+          {% if t.latitude and t.longitude %}<span>📍 {{ '%.3f'|format(t.latitude) }}, {{ '%.3f'|format(t.longitude) }}</span>{% endif %}
+        </div>
+        <p class="trip-card__story">{{ (t.story or '')[:140] }}{% if (t.story or '')|length > 140 %}…{% endif %}</p>
+      </a>
+    {% else %}
+      <p>No trips yet. <a href="/trips/new">Create one</a>.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
