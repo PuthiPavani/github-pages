@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Trip Map</h1>
+  <div id="map" style="height:500px;border-radius:8px;"></div>
+  <script>
+    const trips = {{ trips | tojson }};
+    const map = L.map('map').setView([20, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+    const bounds = L.latLngBounds();
+    trips.forEach(t => {
+      if (t.latitude && t.longitude) {
+        const m = L.marker([t.latitude, t.longitude]).addTo(map);
+        m.bindPopup(`<a href="/trips/${t.slug}"><strong>${t.title}</strong></a>`);
+        bounds.extend([t.latitude, t.longitude]);
+      }
+    });
+    if (bounds.isValid()) { map.fitBounds(bounds.pad(0.15)); }
+  </script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>New Trip</h1>
+  <form action="/trips" method="post" enctype="multipart/form-data" class="form">
+    <label>Title
+      <input type="text" name="title" required />
+    </label>
+    <label>Story
+      <textarea name="story" rows="6" placeholder="Share your story..."></textarea>
+    </label>
+
+    <div class="map-picker">
+      <label>Location (click map or enter coordinates)</label>
+      <div id="map" style="height:300px;border-radius:8px;"></div>
+      <div class="row">
+        <label>Latitude <input type="number" step="any" name="latitude" id="latitude" /></label>
+        <label>Longitude <input type="number" step="any" name="longitude" id="longitude" /></label>
+      </div>
+    </div>
+
+    <label>Photos
+      <input type="file" name="files" multiple accept="image/*" />
+    </label>
+    <button type="submit">Create Trip</button>
+  </form>
+
+  <script>
+    const map = L.map('map').setView([20, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+    let marker = null;
+    function setMarker(lat, lng) {
+      if (marker) { marker.setLatLng([lat, lng]); }
+      else { marker = L.marker([lat, lng]).addTo(map); }
+    }
+    map.on('click', (e) => {
+      document.getElementById('latitude').value = e.latlng.lat.toFixed(6);
+      document.getElementById('longitude').value = e.latlng.lng.toFixed(6);
+      setMarker(e.latlng.lat, e.latlng.lng);
+    });
+  </script>
+{% endblock %}
